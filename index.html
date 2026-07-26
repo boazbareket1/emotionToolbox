@@ -440,19 +440,12 @@ const ACCESS_CODE = "ETB-2026";
   function tryUnlock(){
     const val = (accessCodeInput.value || '').trim();
     if(val.toUpperCase() === ACCESS_CODE.toUpperCase()){
-      try{ localStorage.setItem('toolbox_unlocked', 'yes'); }catch(e){}
       lockScreen.classList.add('hidden');
     } else {
       lockError.style.display = 'block';
       accessCodeInput.value = '';
       accessCodeInput.focus();
     }
-  }
-
-  let alreadyUnlocked = false;
-  try{ alreadyUnlocked = localStorage.getItem('toolbox_unlocked') === 'yes'; }catch(e){}
-  if(alreadyUnlocked){
-    lockScreen.classList.add('hidden');
   }
 
   unlockBtn.addEventListener('click', tryUnlock);
